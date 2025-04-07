@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>yuko のブログ</title>
+    </head>
+    <body>
+        <h1>ようこそ yuko のブログへ！</h1>
+        <h2>ブログ記事の一覧</h2>
+        {% if articles %}
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>投稿者</th>
+                    <th>投稿日</th>
+                    <th>タイトル</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for article in articles %}
+                <tr>
+                    <th>{{ article.created_by.username }}</th>
+                    <th>{{ article.created_at }}</th>
+                    <th><a href="{% url 'article_detail' article.id %}">{{ article.title }}</a></th>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+        <p>ブログ記事はまだ投稿されていません。</p>
+        {% endif %}
+    </body>
+</html>

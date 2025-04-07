@@ -1,0 +1,11 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>yuko のブログ</title>
+    </head>
+    <body>
+        <h2>{{ article.title }} by {{ article.created_by.username }}</h2>
+        <small>投稿日: {{ article.created_at }}</small>
+        <pre>{{ article.abstract }}</pre>
+        <p>{{ article.body }}</p>
+</html>
