@@ -13,6 +13,23 @@
         <nav class="navbar navbar-expand flex-md-row navbar-dark bg-dark">
             <div class="container justify-content-between">
                 <a href="/" class="navbar-brand">yuko のブログ</a>
+                <ul class="navbar-nav mr-md-2">
+                    {% if user.is_authenticated %}
+                    <li class="nav-item">
+                        <form action="{% url 'logout' %}" method="post" class="d-inline">
+                            {% csrf_token %}
+                            <button type="submit" class="btn btn-link nav-link">ログアウト</button>
+                        </form>
+                    </li>
+                    {% else %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'login' %}">ログイン</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'signup' %}">ユーザ登録</a>
+                    </li>
+                    {% endif %}
+                </ul>
             </div>
         </nav>
         <main>
