@@ -21,6 +21,7 @@ from blog.views import top
 
 urlpatterns = [
     path('', top, name='top'),
-    path('articles/', include('blog.urls')),    # blg/urls.py の読み込み
+    path('articles/', include('blog.urls')),    # blog/urls.py の読み込み
     path('admin/', admin.site.urls),
+    path('accounts/', include('accounts.urls')),
 ]
