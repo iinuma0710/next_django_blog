@@ -16,12 +16,19 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
 
 from blog.views import top
+from blog import api_views as blog_api_views
+
+router = routers.DefaultRouter()
+router.register('articles', blog_api_views.ArticleViewSet)
 
 urlpatterns = [
     path('', top, name='top'),
     path('articles/', include('blog.urls')),    # blog/urls.py の読み込み
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
+    # path('api/articles/', include('blog.api_urls'))
+    path("api/", include(router.urls))
 ]
