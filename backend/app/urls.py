@@ -22,19 +22,17 @@ from rest_framework_simplejwt.views import (
     TokenRefreshView,
 )
 
-from blog.views import top
-from blog import api_views as blog_api_views
+from blog.views import top, ArticleViewSet
 from media.views import ImageUploadView
 
 router = routers.DefaultRouter()
-router.register('articles', blog_api_views.ArticleViewSet)
+router.register('articles', ArticleViewSet)
 
 urlpatterns = [
     path('', top, name='top'),
-    path('articles/', include('blog.urls')),    # blog/urls.py の読み込み
+    path('articles/', include('blog.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
-    # path('api/articles/', include('blog.api_urls'))
     path('api/', include(router.urls)),
     path('api/image/', ImageUploadView.as_view(), name='image_upload'),
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
