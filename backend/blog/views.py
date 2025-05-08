@@ -1,9 +1,11 @@
 from django.http import HttpResponse, HttpResponseForbidden
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import render, redirect, get_object_or_404
+from rest_framework import viewsets, filters
 
 from blog.models import Article
 from blog.forms import ArticleForm
+from blog.serializers import ArticleSerializer
 
 
 def top(request):
@@ -50,3 +52,11 @@ def article_detail(request, article_id):
     # article_id で指定された記事を取得、存在しない場合は 404 ページを返す
     article = get_object_or_404(Article, pk=article_id)
     return render(request, "articles/article_detail.html", {'article': article})
+
+
+class ArticleViewSet(viewsets.ModelViewSet):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    filter_backends = (filters.OrderingFilter,)
+    ordering_fields = ('id', 'created_at',)
+    ordering = ('created_at',)

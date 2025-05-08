@@ -5,6 +5,7 @@ article_list = api_views.ArticleViewSet.as_view({
     'get': 'list',
     'post': 'create'
 })
+
 article_detail = api_views.ArticleViewSet.as_view({
     'get': 'retrieve',
     'put': 'update',
