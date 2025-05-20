@@ -24,6 +24,10 @@ from rest_framework_simplejwt.views import (
 
 from blog.views import top, ArticleViewSet
 from media.views import ImageUploadView
+from accounts.views import (
+    CustomTokenObtainPairView,
+    CustomTokenRefreshView
+)
 
 router = routers.DefaultRouter()
 router.register('articles', ArticleViewSet)
@@ -35,6 +39,6 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('api/', include(router.urls)),
     path('api/image/', ImageUploadView.as_view(), name='image_upload'),
-    path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/token/refresh', TokenRefreshView.as_view(), name='token_refresh'),
+    path('api/token/', CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('api/token/refresh', CustomTokenRefreshView.as_view(), name='token_refresh'),
 ]

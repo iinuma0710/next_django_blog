@@ -149,3 +149,6 @@ SIMPLE_JWT = {
     'ROTATE_REFRESH_TOKENS': True,
     'UPDATE_LAST_LOGIN': True,
 }
+
+# 認証に使うモデルの指定
+AUTH_USER_MODEL = 'accounts.CustomUser'
